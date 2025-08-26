@@ -1,41 +1,60 @@
-データを入力してください(スペース区切り) > 1 1 2 3 5 8 13 21
-合計値: 54
-最大値: 21
-最小値: 1
-平均値: 6
-from typing import List
-
-
-def calculation_total(numbers: List[int]) -> int:
+# 合計値を求める関数
+def calculate_total(numbers):
     total = 0
-
     for num in numbers:
         total += num
 
     return total
 
 
-def calculation_max(numbers: List[int]) -> int:
-    max_number = numbers[0]
-
-    for num in numbers[1:]:
-        if num > max_number:
-            max_number = num
-
-    return max_number
+# 最大値を求める関数
 
 
-def calculation_min(numbers: List[int]) -> int:
-    min_number = numbers[0]
+def calculate_max(numbers):
+    max_value = numbers[0]
+    for number in numbers:
+        if number > max_value:
+            max_value = number
 
-    for num in numbers[1:]:
-        if num < min_number:
-            min_number = num
-
-    return min_number
+    return max_value
 
 
-def calculation_avg(numbers: List[int]) -> int:
-    total = calculation_total(numbers)
+# 最小値を求める関数
 
-    return total // len(numbers)
+
+def calculate_min(numbers):
+    min_value = numbers[0]
+    for num in numbers:
+        if numbers < min_value:
+            min_value = num
+
+    return min_value
+
+
+# 平均値を求める関数
+
+
+def calculate_mean(numbers):
+    total = calculate_total(numbers)
+    count = 0
+    for nember in numbers:
+        count += 1
+        mean_value = total // count
+    return mean_value
+
+
+# メーン処理
+
+
+def main():
+    data_input = input("データーを入力してください(スペース区切り) > ")
+    numbers = [int(x) for x in data_input.split()]
+
+    print("最大値:", calculate_total(numbers))
+    print("最大値:", calculate_max(numbers))
+    print("最小値:", calculate_min(numbers))
+    print("平均値:", calculate_mean(numbers))
+
+
+if __name__ == "__main__":
+    main
